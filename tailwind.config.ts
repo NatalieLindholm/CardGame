@@ -12,6 +12,9 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      borderWidth: {
+        "5": "5px", // Add a custom border width
+      },
     },
   },
   plugins: [],

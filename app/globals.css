@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .custom-shadow {
+    @apply shadow; /* This applies a minimal shadow base */
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5); /* Override with the specific shadow */
+  }
+}
+
+@layer utilities {
+  .right-border-5 {
+    @apply border-r-5 border-black;
+  }
+}
+
+@layer utilities {
+  .left-border-5 {
+    @apply border-l-5 border-black;
+  }
+}
+
+@layer utilities {
+  .text {
+    color: #3b3b3b;
+  }
+}
