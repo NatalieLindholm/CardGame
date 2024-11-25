@@ -6,7 +6,6 @@ import "./globals.css";
 const inriaSerif = Inria_Serif({
   subsets: ["latin"],
   weight: ["400", "700"], // Specify the weights you want to use
-  variable: "--font-inria-serif",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inriaSerif.variable} antialiased`}>{children}</body>
+      <body className={`${inriaSerif.className} antialiased`}>{children}</body>
     </html>
   );
 }
