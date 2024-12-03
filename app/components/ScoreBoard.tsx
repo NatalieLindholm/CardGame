@@ -24,7 +24,7 @@ export default function ScoreBoard() {
   }, [visible]);
 
   return (
-    <div>
+    <div className="w-1/3 flex justify-start ml-6">
       <button
         className="flex justify-center items-center pt-1 text custom-shadow rounded-lg bg-white hover:bg-gray-200 text-3xl h-16 w-16"
         onClick={() => setVisible(!visible)}

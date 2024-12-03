@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import blue from "../photos/blue.jpg";
 import red from "../photos/red.jpg";
 import "../globals.css";
 
-export default function CardFunction() {
+export default function CardFunction({ passData }) {
+  const [data, setData] = useState("");
   const [cardYou, setCardYou] = useState<Card | null>(null);
   const [cardBot, setCardBot] = useState<Card | null>(null);
   const [flipped, setFlipped] = useState(false);
@@ -80,7 +81,14 @@ export default function CardFunction() {
     setCardYou(yourCard);
     setCardBot(botCard);
     setFlipped(true);
+
+    const cardData = { yourCard, botCard };
+    setData(cardData);
+    passData(data);
   };
+  useEffect(() => {
+    passData(data);
+  }, [data]);
 
   const draw = () => {
     if (flipped) {
