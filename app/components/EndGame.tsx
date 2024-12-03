@@ -1,13 +1,20 @@
 "use client";
 
-export default function EndGame() {
-  // When "End Game" button is pressed:
-  // - Reset table (scores and cards)
-  // - Add the scores to the scoreboard and save in db
+import { saveDb } from "../actions";
 
+export default function EndGame({ yourScore, botScore, resetScores, unFlip }) {
+  // reset points
+  // unflip cards
   return (
     <div>
-      <button className="text custom-shadow rounded-lg bg-white text-3xl h-16 w-48">
+      <button
+        onClick={() => {
+          saveDb(yourScore, botScore);
+          resetScores();
+          unFlip();
+        }}
+        className="text custom-shadow rounded-lg bg-white text-3xl h-16 w-48"
+      >
         End Game
       </button>
     </div>
