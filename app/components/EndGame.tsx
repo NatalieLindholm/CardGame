@@ -1,10 +1,14 @@
 "use client";
-
+import { useFlipped } from "../context/FlippedContext";
 import { saveDb } from "../actions";
 
-export default function EndGame({ yourScore, botScore, resetScores, unFlip }) {
-  // reset points
-  // unflip cards
+export default function EndGame({ yourScore, botScore, resetScores }) {
+  const { flipped, setFlipped } = useFlipped();
+
+  const unFlip = () => {
+    setFlipped(false);
+  };
+
   return (
     <div>
       <button

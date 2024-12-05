@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import blue from "../photos/blue.jpg";
 import red from "../photos/red.jpg";
+import { useFlipped } from "../context/FlippedContext";
 import "../globals.css";
 
 export default function CardFunction({ passData }) {
+  const { flipped, setFlipped } = useFlipped();
   const [data, setData] = useState("");
   const [cardYou, setCardYou] = useState<Card | null>(null);
   const [cardBot, setCardBot] = useState<Card | null>(null);
-  const [flipped, setFlipped] = useState(false);
 
   type Card = {
     id: number;
@@ -86,6 +87,7 @@ export default function CardFunction({ passData }) {
     setData(cardData);
     passData(data);
   };
+
   useEffect(() => {
     passData(data);
   }, [data]);
@@ -117,7 +119,7 @@ export default function CardFunction({ passData }) {
               quality={100}
             />
           </div>
-          <div className="card-back bg-white text-3xl text">
+          <div className="card-back bg-white text-3xl">
             <h3 className="pb-4 text-4xl font-bold">You</h3>
             <p>{cardYou ? cardYou.text : "error bad coder"}</p>
           </div>
@@ -130,6 +132,7 @@ export default function CardFunction({ passData }) {
       >
         Draw
       </button>
+
       <div className={`card-container ${flipped ? "flipped" : ""}`}>
         <div className="card">
           <div className="card-front">
@@ -142,7 +145,7 @@ export default function CardFunction({ passData }) {
               quality={100}
             />
           </div>
-          <div className="card-back bg-white text-3xl text">
+          <div className="card-back bg-white text-3xl">
             <h3 className="pb-4 text-4xl font-bold">Bot</h3>
             <p>{cardBot ? cardBot.text : "error bad coder"}</p>
           </div>

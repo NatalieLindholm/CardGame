@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Inria_Serif } from "next/font/google";
+import { FlippedProvider } from "./context/FlippedContext";
 import "./globals.css";
 
 // Google Font: Inria Serif
@@ -20,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inriaSerif.className} antialiased`}>{children}</body>
+      <body className={`${inriaSerif.className} antialiased`}>
+        <FlippedProvider>{children}</FlippedProvider>
+      </body>
     </html>
   );
 }
