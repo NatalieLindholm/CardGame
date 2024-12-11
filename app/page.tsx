@@ -5,10 +5,11 @@ import wood from "./photos/wood.jpg";
 import felt from "./photos/felt.jpg";
 import CardFunction from "./components/CardFunction";
 import Scores from "./components/Scores";
+import { CardType } from "./types";
 
 export default function Home() {
-  const [data, setData] = useState("");
-  const handleData = (data: React.SetStateAction<string>) => {
+  const [data, setData] = useState<CardType>();
+  const handleData = (data: CardType) => {
     setData(data);
   };
   return (
@@ -22,7 +23,7 @@ export default function Home() {
           objectFit="cover"
           quality={100}
         />
-        <Scores data={data} />
+        {data && <Scores data={data} />}
       </div>
 
       <div className="flex w-full h-full">

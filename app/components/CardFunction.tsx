@@ -5,16 +5,26 @@ import blue from "../photos/blue.jpg";
 import red from "../photos/red.jpg";
 import { useFlipped } from "../context/FlippedContext";
 import "../globals.css";
+import { CardType } from "../types";
 
-export default function CardFunction({ passData }) {
+export default function CardFunction({
+  passData,
+}: {
+  passData: (data: CardType) => void;
+}) {
   const { flipped, setFlipped } = useFlipped();
-  const [data, setData] = useState("");
+  const [data, setData] = useState<Cards>();
   const [cardYou, setCardYou] = useState<Card | null>(null);
   const [cardBot, setCardBot] = useState<Card | null>(null);
 
   type Card = {
     id: number;
     text: string;
+  };
+
+  type Cards = {
+    yourCard: Card;
+    botCard: Card;
   };
 
   const cards = [
@@ -85,11 +95,15 @@ export default function CardFunction({ passData }) {
 
     const cardData = { yourCard, botCard };
     setData(cardData);
-    passData(data);
+    if (data) {
+      passData(data);
+    }
   };
 
   useEffect(() => {
-    passData(data);
+    if (data) {
+      passData(data);
+    }
   }, [data, passData]);
 
   const draw = () => {
