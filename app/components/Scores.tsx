@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import EndGame from "./EndGame";
 import ScoreBoard from "./ScoreBoard";
+import { CardType } from "../types";
 
-export default function Scores({ data }) {
+export default function Scores({ data }: { data: CardType }) {
   const [scoreUser, setScoreUser] = useState(0);
   const [scoreBot, setScoreBot] = useState(0);
 
@@ -20,6 +21,7 @@ export default function Scores({ data }) {
 
   useEffect(() => {
     addPoints();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   return (

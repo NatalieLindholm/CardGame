@@ -6,7 +6,7 @@ import "./globals.css";
 // Google Font: Inria Serif
 const inriaSerif = Inria_Serif({
   subsets: ["latin"],
-  weight: ["400", "700"], // Specify the weights you want to use
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {

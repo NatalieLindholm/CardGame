@@ -2,12 +2,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FaTrophy } from "react-icons/fa";
 import { getDb } from "../actions";
+import type { ScoreBoard } from "../types";
 
 export default function ScoreBoard() {
   const [visible, setVisible] = useState(false);
-  const [scoreData, setScoreData] = useState<
-    { id: number; userscore: number; botscore: number }[]
-  >([]);
+  const [scoreData, setScoreData] = useState<ScoreBoard[]>([]);
   const card = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -17,9 +16,7 @@ export default function ScoreBoard() {
       }
     };
 
-    getDb().then((data) => {
-      setScoreData(data);
-    });
+    const data = await getDb();
 
     if (visible) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -55,7 +52,7 @@ export default function ScoreBoard() {
                     botscore: number;
                   }) => (
                     <div
-                      key={data.id} // Use a unique property from your data object
+                      key={data.id}
                       className="h-20 flex flex-row items-center justify-around border-[1px] border-t-[#3b3b3b] w-[350px]"
                     >
                       <p>You: {data.userscore}</p>

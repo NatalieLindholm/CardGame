@@ -2,8 +2,16 @@
 import { useFlipped } from "../context/FlippedContext";
 import { saveDb } from "../actions";
 
-export default function EndGame({ yourScore, botScore, resetScores }) {
-  const { flipped, setFlipped } = useFlipped();
+export default function EndGame({
+  yourScore,
+  botScore,
+  resetScores,
+}: {
+  yourScore: number;
+  botScore: number;
+  resetScores: () => void;
+}) {
+  const { setFlipped } = useFlipped();
 
   const unFlip = () => {
     setFlipped(false);
