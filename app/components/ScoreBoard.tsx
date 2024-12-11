@@ -16,7 +16,15 @@ export default function ScoreBoard() {
       }
     };
 
-    const data = await getDb();
+    const fetchData = async () => {
+      try {
+        const dbData:ScoreBoard[] = await getDb() as ScoreBoard[];
+        setScoreData(dbData);
+      } catch (error) {
+        console.error("Error fetching data from the database:", error);
+      }
+    }
+    fetchData();
 
     if (visible) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -46,11 +54,7 @@ export default function ScoreBoard() {
 
               <div className="h-[400px]  overflow-y-scroll">
                 {scoreData.map(
-                  (data: {
-                    id: number;
-                    userscore: number;
-                    botscore: number;
-                  }) => (
+                  (data) => (
                     <div
                       key={data.id}
                       className="h-20 flex flex-row items-center justify-around border-[1px] border-t-[#3b3b3b] w-[350px]"
@@ -58,8 +62,8 @@ export default function ScoreBoard() {
                       <p>You: {data.userscore}</p>
                       <p>Bot: {data.botscore}</p>
                     </div>
-                  )
-                )}
+                  
+                  ))}
               </div>
             </div>
           </div>

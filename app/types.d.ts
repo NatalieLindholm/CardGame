@@ -17,4 +17,4 @@ export type ScoreBoard = {
   id: number;
   userscore: number;
   botscore: number;
-}[];
+};
